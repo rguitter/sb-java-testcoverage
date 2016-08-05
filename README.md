@@ -88,7 +88,9 @@ are kind of a nest which should only allow one kind of fish to go through. PIT w
 your test to see if other kind of fish can go through by creating mutants from your class. For each mutant fish,
 PIT expect your test to kill it. Highest the number of survivors is, less relevant are your tests.
 
-Let's add this to the **pom.xml** in the build section:
+Let's add this to the **pom.xml** 
+
+* in the build section:
 
 ```
 <plugin>
@@ -112,6 +114,23 @@ Let's add this to the **pom.xml** in the build section:
             </goals>
         </execution>
     </executions>
+</plugin>
+```
+
+* in the report section:
+
+```
+<plugin>
+    <groupId>org.pitest</groupId>
+    <artifactId>pitest-maven</artifactId>
+    <version>1.1.10</version>
+    <reportSets>
+        <reportSet>
+            <reports>
+                <report>report</report>
+            </reports>
+        </reportSet>
+    </reportSets>
 </plugin>
 ```
 
