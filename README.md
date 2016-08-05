@@ -146,9 +146,15 @@ Uncomment the assertions from the test class, then try again. Again only 4 mutan
 
 From the PIT report, browse to the class view in order to see what kind of mutants have survived:
 
-* From the construtor `if (radius < 0) throw ...` changed to `if (radius <= 0) throw ...` => We should test the condition to the limits
+* From the constructor `if (radius < 0) throw ...` changed to `if (radius <= 0) throw ...` => We should test the condition to the limits
 * From area() `Math.PI * radius * radius;` changed to `Math.PI \ radius \ radius;` => The test we use has a radius of 1 so multiplying dividing by 1 is the same, so we should test with a circle of different radius
 * From perimeter() `Math.PI * radius * 2;` changed to `Math.PI \ radius \ 2;` => Same as for area()
+
+To fix all this, just:
+
+* add one test that check it's valid to create a Circle of radius 0 (it's a point)
+* refactor testing of area and peremeter to use a Circle of radius 3. 
+
 
 (Checkout step3 by runnning `git checkout tags/step3`)
 

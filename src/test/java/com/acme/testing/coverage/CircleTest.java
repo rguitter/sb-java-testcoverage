@@ -21,17 +21,22 @@ public class CircleTest {
     }
 
     @Test
-    public void areaForRadius1ShouldBe314() {
-        Circle circle = new Circle(1);
-        double result = circle.area();
-        Assert.assertEquals("For radius 1, area should be 3.14", 3.14, result, 0.01);
+    public void callingConstructorWithRadiusEqualTo0IsValid() {
+        Assert.assertNotNull(new Circle(0));
     }
 
     @Test
-    public void perimeterForRadius1ShouldBe628() {
-        Circle circle = new Circle(1);
+    public void areaForRadius1ShouldBe28_27() {
+        Circle circle = new Circle(3);
+        double result = circle.area();
+        Assert.assertEquals("For radius 3, area should be 28.27", 28.27, result, 0.01);
+    }
+
+    @Test
+    public void perimeterForRadius1ShouldBe18_84() {
+        Circle circle = new Circle(3);
         double result = circle.perimeter();
-        Assert.assertEquals("For radius 1, perimeter should be 6.28", 6.28, result, 0.01);
+        Assert.assertEquals("For radius 3, perimeter should be 18.84", 18.84, result, 0.01);
     }
 
 }
