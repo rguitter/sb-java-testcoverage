@@ -4,7 +4,7 @@ In other words: **Who watch the watchmen?**
 
 # What we want to test
 
-```
+```java
 public class Circle {
 
     private static final double PI = 3.14;
@@ -30,14 +30,14 @@ public class Circle {
 # Step 1
 
 * Checkout step1 by runnning `git checkout tags/step1`.
-* Run `mvn clean verify site` then open in a browser **target/site/index.html**.
+* Run `mvn clean verify site` then open **target/site/index.html** in a browser.
 * Go to the **reports** section to check **Surefire Report** and **JaCoCo**.
 
-As you can see,  we're standing in a middle of a green field so your level of trust should be quite high.
+As you can see, we're standing in a middle of a green field so your level of trust should be quite high.
 
 Let's give a look to the test class:
 
-```
+```java
 public class CircleTest {
 
     @Rule
@@ -86,13 +86,13 @@ Should be nice to have an automated way to generate mutation of the code we're t
 For this, let's use [PIT Mutation Testing](http://pitest.org/). Imagine that your tests 
 are kind of a nest which should only allow one kind of fish to go through. PIT will challenge
 your test to see if other kind of fish can go through by creating mutants from your class. For each mutant fish,
-PIT expect your test to kill it. Highest the number of survivors is, less relevant are your tests.
+PIT expect your test to kill it. Highest the number of survivors is, the less relevant your tests are.
 
 Let's add this to the **pom.xml** 
 
 * in the build section:
 
-```
+```java
 <plugin>
     <groupId>org.pitest</groupId>
     <artifactId>pitest-maven</artifactId>
@@ -136,9 +136,9 @@ Let's add this to the **pom.xml**
 
 Then run `mvn clean verify site` and check the new report by opening **target/site/index.html**. 
 Now we can clearly see that something is wrong because PIT has create 8 mutations (aka mutants) 
-and only 1 has been detect as bad code (that mutant has been killed).
+and only 1 has been detected as bad code (that mutant has been killed).
 
-Uncomment the assertions from the test class, then try again. Again only 4 mutants has been killed.
+Uncomment the assertions from the test class, then try again. Situation has improved but we keep on having uncaught mutants.
 
 (Checkout step2 by runnning `git checkout tags/step2`)
 
@@ -147,14 +147,13 @@ Uncomment the assertions from the test class, then try again. Again only 4 mutan
 From the PIT report, browse to the class view in order to see what kind of mutants have survived:
 
 * From the constructor `if (radius < 0) throw ...` changed to `if (radius <= 0) throw ...` => We should test the condition to the limits
-* From area() `Math.PI * radius * radius;` changed to `Math.PI \ radius \ radius;` => The test we use has a radius of 1 so multiplying dividing by 1 is the same, so we should test with a circle of different radius
+* From area() `Math.PI * radius * radius;` changed to `Math.PI \ radius \ radius;` => The test we use has a radius of 1 so multiplying or  dividing by 1 is the same, so we should test with a circle of different radius
 * From perimeter() `Math.PI * radius * 2;` changed to `Math.PI \ radius \ 2;` => Same as for area()
 
 To fix all this, just:
 
-* add one test that check it's valid to create a Circle of radius 0 (it's a point)
-* refactor testing of area and peremeter to use a Circle of radius 3. 
-
+* Add one test that check it's valid to create a Circle of radius 0 (it's a point).
+* Refactor testing of area and perimeter to use a Circle of radius 3. 
 
 (Checkout step3 by runnning `git checkout tags/step3`)
 
