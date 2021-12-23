@@ -82,9 +82,9 @@ Should be nice to have an automated way to generate mutation of the code we're t
 
 **Who watch the watchmen?**
 
-[Mutant testing](https://en.wikipedia.org/wiki/Mutation_testing) testing to the rescue.
+[Mutant testing](https://en.wikipedia.org/wiki/Mutation_testing) to the rescue.
 For this, let's use [PIT Mutation Testing](http://pitest.org/). Imagine that your tests 
-are kind of a nest which should only allow one kind of fish to go through. PIT will challenge
+are kind of a net which should only allow one kind of fish to go through. PIT will challenge
 your test to see if other kind of fish can go through by creating mutants from your class. For each mutant fish,
 PIT expect your test to kill it. Highest the number of survivors is, the less relevant your tests are.
 
